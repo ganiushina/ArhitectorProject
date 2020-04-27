@@ -1,5 +1,5 @@
-import java.util.HashSet;
-import java.util.Iterator;
+import project.*;
+
 import java.util.Set;
 
 public class Main {
@@ -13,10 +13,21 @@ public class Main {
         department.addEmployee(employerVasya);
         department.addEmployee(employerPetya);
         Company company = new Company("Roga&Copyta", "Moscow", "4567");
-        Project project = new Project("NewVasyki", company, employerVasya);
-        Contract contract = new Contract("contract1", project, employerPetya);
 
+        ProjectFactory projectFactory;
 
+        String projectType  = "recruitment";
+        if (projectType.equals("recruitment")){
+            projectFactory = new AbsProjectCoastFactory();
+        }
+        else {
+            projectFactory = new NewProjectFactory();
+        }
+
+        ProjectRecruitment projectRecruiting = projectFactory.getRecruiting();
+        System.out.println(projectRecruiting.getProjectRecruitmentCoast());
+
+        Contract contract = new Contract("contract1", projectRecruiting, employerPetya);
 
         Set<Employer> set = department.getEmployees();
 
@@ -26,7 +37,6 @@ public class Main {
 
         System.out.println(contract.getFileName());
         System.out.println( employerPetya.getDepartment().getName());
-
 
     }
 }

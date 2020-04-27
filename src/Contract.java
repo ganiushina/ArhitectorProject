@@ -1,11 +1,14 @@
+import project.ProjectRecruitingImpl;
+import project.ProjectRecruitment;
+
 public class Contract {
     private String fileName;
-    Project project;
+    ProjectRecruitment projectRecruiting;
     Employer employer;
 
-    public Contract(String fileName, Project project, Employer employer) {
+    public Contract(String fileName, ProjectRecruitment projectRecruiting, Employer employer) {
         this.fileName = fileName;
-        this.project = project;
+        this.projectRecruiting = projectRecruiting;
         this.employer = employer;
     }
 
@@ -17,12 +20,12 @@ public class Contract {
         this.fileName = fileName;
     }
 
-    public Project getProject() {
-        return project;
+    public ProjectRecruitment getProjectRecruiting() {
+        return projectRecruiting;
     }
 
-    public void setProject(Project project) {
-        this.project = project;
+    public void setProjectRecruiting(ProjectRecruitment projectRecruiting) {
+        this.projectRecruiting = projectRecruiting;
     }
 
     public Employer getEmployer() {
