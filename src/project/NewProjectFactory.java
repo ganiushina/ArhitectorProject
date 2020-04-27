@@ -2,7 +2,7 @@ package project;
 
 public class NewProjectFactory implements ProjectFactory {
     @Override
-    public ProjectRecruitment getRecruiting() {
+    public ProjectRecruitment getRecruiting(double price) {
         return new NewProjectRecruitment();
     }
 

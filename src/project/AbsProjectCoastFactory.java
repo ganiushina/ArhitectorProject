@@ -1,9 +1,10 @@
 package project;
 
 public class AbsProjectCoastFactory implements ProjectFactory {
+
     @Override
-    public ProjectRecruitment getRecruiting() {
-        return new ProjectRecruitingImpl();
+    public ProjectRecruitment getRecruiting(double price) {
+        return new ProjectRecruitingImpl(price);
     }
 
     @Override

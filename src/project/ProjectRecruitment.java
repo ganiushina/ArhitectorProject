@@ -2,5 +2,5 @@ package project;
 
 public interface ProjectRecruitment {
 
-    double getProjectRecruitmentCoast();
+    double getProjectRecruitmentCoast(double price);
 }
