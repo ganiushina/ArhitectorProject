@@ -9,6 +9,7 @@ public class Employer extends Man {
 
 
     public Employer(Department department, String position,  Man person) {
+        super();
         this.department = department;
         this.position = position;
         this.person = person;

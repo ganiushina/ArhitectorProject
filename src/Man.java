@@ -1,6 +1,11 @@
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Observer;
 
-public class Man {
+public class Man implements Channel  {
+    private Notifier notifier;
+
     private int id;
     private String name;
     private String surname;
@@ -11,6 +16,33 @@ public class Man {
     private String classifier;
     private String city;
     private String language;
+    private String companyName;
+    Company company;
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+//    public Man(Notifier notifier) {
+//        this.notifier = notifier;
+//        notifier.addObserver(this);
+//    }
+
+//    public Man() {
+//
+//    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
 
     public String getName() {
         return name;
@@ -84,62 +116,9 @@ public class Man {
         this.language = language;
     }
 
-    public static class Builder {
-        private Man newMan;
-        public Builder() {
-            newMan = new Man();
-        }
 
-        public Builder withName(String name){
-            newMan.name = name;
-            return this;
-        }
-
-        public Builder withSurname(String surname){
-            newMan.surname = surname;
-            return this;
-        }
-
-        public Builder withSurnameTwo(String surnameTwo){
-            newMan.surnameTwo = surnameTwo;
-            return this;
-        }
-
-        public Builder withBirthday(Date birthday){
-            newMan.birthday = birthday;
-            return this;
-        }
-
-        public Builder withContact(String contact){
-            newMan.contact = contact;
-            return this;
-        }
-
-        public Builder withEducation(String education){
-            newMan.education = education;
-            return this;
-        }
-
-        public Builder withClassifier(String classifier){
-            newMan.classifier = classifier;
-            return this;
-        }
-
-        public Builder withCity(String city){
-            newMan.city = city;
-            return this;
-        }
-
-        public Builder withLanguage(String language){
-            newMan.language = language;
-            return this;
-        }
-
-        public Man build(){
-            return newMan;
-        }
+    @Override
+    public void update(Object o) {
+        this.setCompany((Company) o);
     }
-
-
-
 }

@@ -5,14 +5,19 @@ import java.util.Set;
 public class Main {
     public static void main(String[] args) {
 
-        Man manVasya = new Man.Builder().withName("Vasya").withSurname("Pupkin").withCity("Samara").build();
-        Man manPetya = new Man.Builder().withName("Petya").withSurname("Vasechkin").withContact("123").withEducation("hiht").build();
+        Company company = new Company("Roga&Copyta", "Moscow", "4567");
+        Man manVasya = new Builder().withName("Vasya").withSurname("Pupkin").withCity("Samara").withCompany(company).build();
+        Man manPetya = new Builder().withName("Petya").withSurname("Vasechkin").withContact("123").withEducation("hiht").build();
         Department department = new Department("IT");
+        company.addObserver(manVasya);
         Employer employerVasya = new Employer(department, "dvornik", manVasya);
         Employer employerPetya = new Employer(department, "storoj", manPetya);
         department.addEmployee(employerVasya);
         department.addEmployee(employerPetya);
-        Company company = new Company("Roga&Copyta", "Moscow", "4567");
+
+        company.setName("lalala");
+        System.out.println(manPetya.getCompanyName());
+        System.out.println(manVasya.getCompany().getName());
 
         ProjectFactory projectFactory;
 

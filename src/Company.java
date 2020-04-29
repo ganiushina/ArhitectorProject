@@ -1,4 +1,9 @@
-public class Company {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Company implements Notifier {
+
+    private List channels;
     private int id;
     private String name;
     private String city;
@@ -8,6 +13,7 @@ public class Company {
         this.name = name;
         this.city = city;
         this.address = address;
+        channels = new ArrayList();
     }
 
     public String getName() {
@@ -16,6 +22,7 @@ public class Company {
 
     public void setName(String name) {
         this.name = name;
+        notifyObserver();
     }
 
     public String getCity() {
@@ -32,5 +39,26 @@ public class Company {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public void addObserver(Channel ch) {
+        channels.add(ch);
+    }
+
+    @Override
+    public void removeObserver(Channel ch) {
+        int i = channels.indexOf(ch);
+        if (i >= 0){
+            channels.remove(i);
+        }
+    }
+
+    @Override
+    public void notifyObserver() {
+        for (int i = 0; i < channels.size(); i++){
+            Channel ch = (Channel)channels.get(i);
+            ch.update(this);
+        }
     }
 }
