@@ -37,25 +37,35 @@ public class Main {
             e.printStackTrace();
         }
 
-        try {
-            Man manFind = manMapper.findById(1);
-            System.out.println("manFind: " +  manFind.getName());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            Man manFind1 = manMapper.findById(3);
-            System.out.println("manFind1: " +  manFind1.getName());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Man manFind = manMapper.findById(1);
+//            System.out.println("manFind: " +  manFind.getName());
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        try {
+//            Man manFind1 = manMapper.findById(3);
+//            System.out.println("manFind1: " +  manFind1.getName());
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
 
         try {
             manMapper.delete(manVasya);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
+        try {
+            Man testMan = manMapper.getMan(1);
+            System.out.println("testMan: " + testMan.getName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
 
 
         ProjectFactory projectFactory;

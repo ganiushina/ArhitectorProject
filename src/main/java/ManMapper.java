@@ -2,10 +2,9 @@ import java.sql.*;
 
 public class ManMapper implements ManDB {
 
-    Connection connection;
+    private static Connection connection;
     private static Statement stmt;
-    PreparedStatement preparedStatement = null;
-    Statement statement = null;
+    private static PreparedStatement preparedStatement = null;
 
 
     public ManMapper() {
@@ -22,15 +21,27 @@ public class ManMapper implements ManDB {
         }
     }
 
+    public static Man getMan(int id) throws Exception {
 
-    public Man findById(int idPerson) throws SQLException{
+        Man man = IdentityMap.isInto(id);
+        if(man!=null)
+        {
+            return man;
+        }
+        else {
+            Man manNew = findById(id);
+            IdentityMap.add(manNew);
+            return manNew;
+        }
 
+    }
+
+
+    private static Man findById(int idPerson) throws SQLException {
         preparedStatement = connection.prepareStatement(
                 "SELECT id, name, surname FROM [man ] where id = ?");
         preparedStatement.setInt(1, idPerson);
         Man man = new Man();
-
-
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             man.setId(resultSet.getInt(1));
@@ -41,6 +52,8 @@ public class ManMapper implements ManDB {
 
         return man;
     }
+
+
 
     public void insert(Man man) throws SQLException {
         preparedStatement = connection.prepareStatement(
