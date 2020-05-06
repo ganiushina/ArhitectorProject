@@ -1,16 +1,21 @@
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Observer;
 
 public class Man implements Channel  {
-    private Notifier notifier;
 
     private int id;
     private String name;
     private String surname;
     private String surnameTwo;
     private Date birthday;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private String contact;
     private String education;
     private String classifier;
@@ -27,14 +32,6 @@ public class Man implements Channel  {
         this.company = company;
     }
 
-//    public Man(Notifier notifier) {
-//        this.notifier = notifier;
-//        notifier.addObserver(this);
-//    }
-
-//    public Man() {
-//
-//    }
 
     public String getCompanyName() {
         return companyName;

@@ -1,9 +1,12 @@
 import project.*;
 
+import java.sql.*;
 import java.util.Set;
 
 public class Main {
-    public static void main(String[] args) {
+
+
+    public static void main(String[] args)  {
 
         Company company = new Company("Roga&Copyta", "Moscow", "4567");
         Man manVasya = new Builder().withName("Vasya").withSurname("Pupkin").withCity("Samara").withCompany(company).build();
@@ -18,6 +21,42 @@ public class Main {
         company.setName("lalala");
         System.out.println(manPetya.getCompanyName());
         System.out.println(manVasya.getCompany().getName());
+        manPetya.setId(1);
+        manVasya.setId(2);
+        ManMapper manMapper = new ManMapper();
+
+        try {
+            manMapper.update(manVasya);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            manMapper.insert(manVasya);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Man manFind = manMapper.findById(1);
+            System.out.println("manFind: " +  manFind.getName());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Man manFind1 = manMapper.findById(3);
+            System.out.println("manFind1: " +  manFind1.getName());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            manMapper.delete(manVasya);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
         ProjectFactory projectFactory;
 
@@ -48,4 +87,6 @@ public class Main {
         System.out.println(extraProject.getProjectName());
         System.out.println(newProject.getProjectName());
     }
+
+
 }
