@@ -64,8 +64,13 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        ManView manView = new ManView();
 
-
+        ManController manController = new ManController(manVasya, manView);
+        manController.updateView();
+        manController.setManName("Sidr");
+        manController.setManSurname("Vasechkin");
+        manController.updateView();
 
 
         ProjectFactory projectFactory;
